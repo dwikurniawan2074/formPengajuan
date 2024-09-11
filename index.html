@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengajuan Pinjaman</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .approved {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulir Pengajuan</h2>
+        <form id="formPengajuan">
+            <div class="form-group">
+                <label for="namaKonsumen">Nama Konsumen</label>
+                <input type="text" class="form-control" id="namaKonsumen" required>
+            </div>
+            <div class="form-group">
+                <label for="nik">NIK Konsumen</label>
+                <input type="text" class="form-control" id="nik" required>
+            </div>
+            <div class="form-group">
+                <label for="dealer">Dealer</label>
+                <input type="text" class="form-control" id="dealer" required>
+            </div>
+            <div class="form-group">
+                <label for="merkKendaraan">Merk Kendaraan</label>
+                <input type="text" class="form-control" id="merkKendaraan" required>
+            </div>
+            <div class="form-group">
+                <label for="tipeKendaraan">Tipe Kendaraan</label>
+                <input type="text" class="form-control" id="tipeKendaraan" required>
+            </div>
+            <div class="form-group">
+                <label for="modelKendaraan">Model Kendaraan</label>
+                <input type="text" class="form-control" id="modelKendaraan" required>
+            </div>
+            <div class="form-group">
+                <label for="lamaKredit">Lama Kredit (bulan)</label>
+                <input type="number" class="form-control" id="lamaKredit" required>
+            </div>
+            <div class="form-group">
+                <label for="angsuran">Angsuran (per bulan)</label>
+                <input type="number" class="form-control" id="angsuran" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+        </form>
+
+        <div class="approved">
+            <h2>Daftar Pengajuan yang Disetujui</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama Konsumen</th>
+                        <th>NIK</th>
+                        <th>Dealer</th>
+                        <th>Merk Kendaraan</th>
+                        <th>Tipe Kendaraan</th>
+                        <th>Model Kendaraan</th>
+                        <th>Lama Kredit</th>
+                        <th>Angsuran</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="approvedList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const namaKonsumen = document.getElementById('namaKonsumen').value;
+            const nik = document.getElementById('nik').value;
+            const dealer = document.getElementById('dealer').value;
+            const merkKendaraan = document.getElementById('merkKendaraan').value;
+            const tipeKendaraan = document.getElementById('tipeKendaraan').value;
+            const modelKendaraan = document.getElementById('modelKendaraan').value;
+            const lamaKredit = document.getElementById('lamaKredit').value;
+            const angsuran = document.getElementById('angsuran').value;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${namaKonsumen}</td>
+                <td>${nik}</td>
+                <td>${dealer}</td>
+                <td>${merkKendaraan}</td>
+                <td>${tipeKendaraan}</td>
+                <td>${modelKendaraan}</td>
+                <td>${lamaKredit}</td>
+                <td>${angsuran}</td>
+                <td><button class="btn btn-success btn-sm">Setujui</button></td>
+            `;
+
+            document.getElementById('approvedList').appendChild(row);
+            document.getElementById('formPengajuan').reset();
+        });
+    </script>
+</body>
+</html>
